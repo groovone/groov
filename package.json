@@ -1,0 +1,88 @@
+{
+  "name": "groov",
+  "version": "0.0.1",
+  "description": "Groov SDK",
+  "main": "build/main/index.js",
+  "typings": "build/main/index.d.ts",
+  "module": "build/module/index.js",
+  "repository": "https://github.com/elarasuz/groov",
+  "license": "MIT",
+  "keywords": [],
+  "type": "module",
+  "scripts": {
+    "build": "run-p build:*",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
+    "fix:lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "test": "run-s build test:*",
+    "test:lint": "eslint src --ext .ts",
+    "test:prettier": "prettier \"src/**/*.ts\" --list-different",
+    "test:unit": "jest",
+    "check-cli": "run-s test diff-integration-tests check-integration-tests",
+    "check-integration-tests": "run-s check-integration-test:*",
+    "diff-integration-tests": "mkdir -p diff && rm -rf diff/test && cp -r test diff/test && rm -rf diff/test/test-*/.git && cd diff && git init --quiet && git add -A && git commit --quiet --no-verify --allow-empty -m 'WIP' && echo '\\n\\nCommitted most recent integration test output in the \"diff\" directory. Review the changes with \"cd diff && git diff HEAD\" or your preferred git diff viewer.'",
+    "watch:build": "tsc -p tsconfig.json -w",
+    "doc": "run-s doc:html && open-cli build/docs/index.html",
+    "doc:html": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --out build/docs",
+    "doc:json": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --json build/docs/typedoc.json",
+    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs",
+    "version": "standard-version",
+    "reset-hard": "git clean -dfx && git reset --hard && yarn",
+    "prepare-release": "run-s reset-hard test cov:check doc:html version doc:publish"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.2",
+    "@types/node": "12",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "apisauce": "^2.1.2",
+    "babel-jest": "^27.2.5",
+    "codecov": "^3.8.3",
+    "cspell": "^5.12.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-typescript-prettier": "^4.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-functional": "^3.7.2",
+    "eslint-plugin-import": "^2.24.2",
+    "gh-pages": "^3.2.3",
+    "jest": "^27.2.5",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.4.1",
+    "standard-version": "^9.3.1",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typedoc": "^0.22.5",
+    "typescript": "^4.4.3"
+  },
+  "files": [
+    "build/main",
+    "build/module",
+    "!**/*.spec.*",
+    "!**/*.json",
+    "!examples/*",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "prettier": {
+    "singleQuote": true
+  }
+}
