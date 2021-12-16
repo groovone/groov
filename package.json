@@ -1,6 +1,6 @@
 {
   "name": "groov",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Groov SDK",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
@@ -36,8 +36,7 @@
     "node": ">=12"
   },
   "dependencies": {},
-  "peerDependencies": {
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
