@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/elarasuz/groov/compare/v0.0.3...v0.0.4) (2021-12-24)
+
+
+### Features
+
+* falconz-app-base code moved as base ([2ef2865](https://github.com/elarasuz/groov/commit/2ef286509c0b5413eb65f9bfefa1bc94e8211f13))
+
 ### [0.0.3](https://github.com/elarasuz/groov/compare/v0.0.2...v0.0.3) (2021-12-16)
 
 
